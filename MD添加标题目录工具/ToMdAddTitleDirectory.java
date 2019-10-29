@@ -101,20 +101,31 @@ public class ToMdAddTitleDirectory extends Application {
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String currentLineStr = "";
+            int[] dp = new int[3];//用来计数 需要空格多少行
             while ((currentLineStr = bufferedReader.readLine()) != null) //●判断最后一行不存在，为空
             {
-                if (currentLineStr.contains("#### ") || currentLineStr.contains("### ") || currentLineStr.contains("## ")) {
+                int count = 0;
+                if (currentLineStr.contains("#### ") || currentLineStr.contains("### ")
+                        || currentLineStr.contains("## ") || currentLineStr.contains("# ")) {
                     String replaceLineStr = currentLineStr.trim().replace("#", "");
-                    String regNo = "[#|?|(|)|.|,|、|:|？|（|）|。|=|+]";
+                    String regNo = "[#|?|(|)|.|,|，|、|:|？|（|）|。|=|+]";
                     String regVerLine = "[ |>|<]";
                     String specialStr = "";
                     if (currentLineStr.contains("#### ")) {//四级标题
-                        specialStr = "          - [";
+                        count = dp[2] = dp[1] + 2;
                     } else if (currentLineStr.contains("### ")) {//三级标题
-                        specialStr = "      - [";
+                        count = dp[1] = dp[0] + 2;
                     } else if (currentLineStr.contains("## ")) {//二级标题
-                        specialStr = "  - [";
+                        dp = new int[3];
+                        count = dp[0] = 2;
+                    } else if (currentLineStr.contains("# ")) {//一级标题
+                        dp = new int[3];
+                        count = 0;
                     }
+                    for (int i = 0; i < count; i++) {
+                        specialStr += " ";
+                    }
+                    specialStr += "- [";
                     titleStr = titleStr
                             + specialStr
                             + replaceLineStr
