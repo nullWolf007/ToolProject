@@ -94,7 +94,7 @@ public class ToMdAddTitleDirectory extends Application {
 
     //对文件进行添加头
     private void addTitleDirectory(File file) {
-        String titleStr = "- <!-- TOC -->\n";
+        String titleStr = "[TOC]\n- <!-- TOC -->\n";
 
         //读文件
         try {
