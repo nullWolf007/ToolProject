@@ -108,7 +108,7 @@ public class ToMdAddTitleDirectory extends Application {
                 if (currentLineStr.contains("#### ") || currentLineStr.contains("### ")
                         || currentLineStr.contains("## ") || currentLineStr.contains("# ")) {
                     String replaceLineStr = currentLineStr.trim().replace("#", "");
-                    String regNo = "[#|?|(|)|.|,|，|、|:|？|（|）|。|=|+|/]";
+                    String regNo = "[#|?|(|)|.|,|，|、|:|？|（|）|。|=|+|/|：]";
                     String regVerLine = "[ |>|<]";
                     String specialStr = "";
                     if (currentLineStr.contains("#### ")) {//四级标题
