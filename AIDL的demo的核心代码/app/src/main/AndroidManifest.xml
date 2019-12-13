@@ -3,7 +3,11 @@
     package="com.nullWolf.learn">
 
     <!-- 为了安全，添加权限   -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <permission
+        android:name="android.permission.servertest"
+        android:protectionLevel="normal" />
+
+    <uses-permission android:name="android.permission.servertest" />
 
     <application
         android:allowBackup="true"

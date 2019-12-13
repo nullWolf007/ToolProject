@@ -18,9 +18,6 @@ import android.widget.Toast;
 import java.util.List;
 
 public class MyClient extends AppCompatActivity implements View.OnClickListener {
-    public static String[] STORAGE_PERMISSIONS = {"android.permission.WRITE_EXTERNAL_STORAGE"};
-    public static int REQUEST_CODE = 233;
-
 
     private IBookManager iBookManager;
     //界面
@@ -76,8 +73,6 @@ public class MyClient extends AppCompatActivity implements View.OnClickListener 
         intent.setPackage(getPackageName());
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         bindService(intent, serviceConnection, BIND_AUTO_CREATE);
-
-        permissionsDeal();
     }
 
 
@@ -117,25 +112,4 @@ public class MyClient extends AppCompatActivity implements View.OnClickListener 
         }
     }
 
-    /**
-     * 权限处理
-     */
-    public void permissionsDeal() {
-        MuPermissionsTool.requestPermission(this, REQUEST_CODE, new MuPermissionsTool.PermissionListener() {
-            @Override
-            public void onPermissionSucceed(int requestCode, List<String> grantedList) {
-                Log.e("permissionsDeal", "权限通过");
-            }
-
-            @Override
-            public void onPermissionFailed(int requestCode, List<String> deniedList) {
-                Log.e("permissionsDeal", "失败");
-            }
-
-            @Override
-            public void onPermissionsDialogCancel() {
-
-            }
-        }, STORAGE_PERMISSIONS);
-    }
 }

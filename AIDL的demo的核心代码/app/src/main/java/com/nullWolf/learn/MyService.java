@@ -68,7 +68,7 @@ public class MyService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         //为了安全，添加权限。保证只有该权限的才能bind
-        int check = checkCallingOrSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE");
+        int check = checkCallingOrSelfPermission("android.permission.servertest");
         if (check == PackageManager.PERMISSION_DENIED) {
             Log.e("MyService", "onBind: " + "权限被拒绝");
             return null;
