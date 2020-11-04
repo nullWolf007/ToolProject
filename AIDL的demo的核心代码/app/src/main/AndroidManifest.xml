@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nullWolf.learn">
-
-    <!-- 为了安全，添加权限   -->
-    <permission
-        android:name="android.permission.servertest"
-        android:protectionLevel="normal" />
-
-    <uses-permission android:name="android.permission.servertest" />
+    package="com.example.learn">
 
     <application
         android:allowBackup="true"
@@ -17,17 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <service
-            android:name=".MyService"
-            android:process=":remote">
+            android:name=".server.RemoteService"
+            android:enabled="true"
+            android:process=":remote"
+            android:exported="true">
             <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-                <action android:name="com.nullWolf.learn.service" />
+                <action android:name="com.example.learn.remoteservice"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </service>
 
-        <activity android:name=".MyClient">
+        <activity android:name=".client.ClientActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
